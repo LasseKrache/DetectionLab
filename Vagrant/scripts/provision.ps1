@@ -5,8 +5,12 @@ $ProfilePath = "C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1"
 $box = Get-ItemProperty -Path HKLM:SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName -Name "ComputerName"
 $box = $box.ComputerName.ToString().ToLower()
 
-Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Setting timezone to UTC..."
-c:\windows\system32\tzutil.exe /s "UTC"
+Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Setting timezone to W. Europe Standard Time..."
+c:\windows\system32\tzutil.exe /s "W. Europe Standard Time"
+
+Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Setting German as default language..."
+Set-WinUserLanguageList -LanguageList  de-DE -force
+Set-Culture de-DE
 
 Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Checking if Windows evaluation is expiring soon or expired..."
 . c:\vagrant\scripts\fix-windows-expiration.ps1
